@@ -46,23 +46,24 @@ const CocktailCard = ({ drink, isFavourite, toggleFavourite, onDelete }) => {
         style={{ width: "100%", height: "auto" }}
       />
 
-      <div className="iconContainer">
-        <h2>{drink.name}</h2>
-        <button
-          className="iconDiv"
-          onClick={() => toggleFavourite(drink)}
-          aria-label={`Toggle favourite for ${drink.name}`}
-        >
-          <FontAwesomeIcon
-            icon={isFavourite ? faHeartSolid : faHeartRegular}
-            size="2x"
-            color="red"
-            className="heart"
-          />
-        </button>
-      </div>
+<div className="iconContainer">
+  <h2>{drink.name}</h2>
+  <button
+    className="iconDiv"
+    onClick={() => toggleFavourite(drink)}
+    aria-label={`Toggle favourite for ${drink.name}`}
+  >
+    <FontAwesomeIcon
+      icon={isFavourite ? faHeartSolid : faHeartRegular}
+      size="2x"
+      color="red"
+    />
+  </button>
+</div>
 
-      <p>{drink.alcoholic ? "Alcoholic" : "Non-Alcoholic"}</p>
+
+<p className="drink-type">{drink.alcoholic ? "Alcoholic" : "Non-Alcoholic"}</p>
+
       {drink.instructions && <p>{drink.instructions}</p>}
 
       {drink.ingredients && Array.isArray(drink.ingredients) && (

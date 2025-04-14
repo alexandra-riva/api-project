@@ -67,8 +67,8 @@
 
 .add-form-container .form-message {
   text-align: center;
-  color: green;
-  font-weight: 600;
+  color: #e03804;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   font-family: var(--base-font);
 }
