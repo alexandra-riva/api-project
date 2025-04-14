@@ -1,11 +1,16 @@
 import { useFavourites } from "../FavouritesContext/FavouritesContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartRegular, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import {
+  faHeart as faHeartRegular,
+  faTrashAlt,
+} from "@fortawesome/free-regular-svg-icons";
+import { deleteCocktail } from "../../api"; 
 import "../Cocktail-list-component-AR/Cocktail-list.css";
 
 const CocktailsList = ({ items = [], onDelete }) => {
-  const { favourites, addToFavourites, removeFromFavourites } = useFavourites();
+  const { favourites, addToFavourites, removeFromFavourites } =
+    useFavourites();
   const cocktailsArray = Array.isArray(items) ? items : [items];
 
   const toggleFavourite = (drink) => {
@@ -32,9 +37,14 @@ const CocktailsList = ({ items = [], onDelete }) => {
 };
 
 const CocktailCard = ({ drink, isFavourite, toggleFavourite, onDelete }) => {
-  const handleDelete = () => {
-    if (onDelete) {
-      onDelete(drink._id);
+  const handleDelete = async () => {
+    try {
+      await deleteCocktail(drink._id); // ✅ backend DELETE call
+      if (onDelete) {
+        onDelete(drink._id); // ✅ update UI
+      }
+    } catch (error) {
+      console.error("Failed to delete cocktail:", error);
     }
   };
 
@@ -46,23 +56,24 @@ const CocktailCard = ({ drink, isFavourite, toggleFavourite, onDelete }) => {
         style={{ width: "100%", height: "auto" }}
       />
 
-<div className="iconContainer">
-  <h2>{drink.name}</h2>
-  <button
-    className="iconDiv"
-    onClick={() => toggleFavourite(drink)}
-    aria-label={`Toggle favourite for ${drink.name}`}
-  >
-    <FontAwesomeIcon
-      icon={isFavourite ? faHeartSolid : faHeartRegular}
-      size="2x"
-      color="red"
-    />
-  </button>
-</div>
+      <div className="iconContainer">
+        <h2>{drink.name}</h2>
+        <button
+          className="iconDiv"
+          onClick={() => toggleFavourite(drink)}
+          aria-label={`Toggle favourite for ${drink.name}`}
+        >
+          <FontAwesomeIcon
+            icon={isFavourite ? faHeartSolid : faHeartRegular}
+            size="2x"
+            color="red"
+          />
+        </button>
+      </div>
 
-
-<p className="drink-type">{drink.alcoholic ? "Alcoholic" : "Non-Alcoholic"}</p>
+      <p className="drink-type">
+        {drink.alcoholic ? "Alcoholic" : "Non-Alcoholic"}
+      </p>
 
       {drink.instructions && <p>{drink.instructions}</p>}
 
