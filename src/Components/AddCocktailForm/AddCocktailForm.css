@@ -1,0 +1,74 @@
+@import "../../App.css";
+
+.add-form-container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--background-color);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px var(--shadow-color);
+  font-family: var(--base-font);
+}
+
+.add-form-container h2 {
+  font-family: var(--decorative-font);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--font-color);
+}
+
+.add-form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.add-form-container input,
+.add-form-container textarea {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-family: var(--base-font);
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  color: #333;
+}
+
+.add-form-container textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.add-form-container label {
+  font-family: var(--base-font);
+  font-size: 1rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-form-container button {
+  background-color: var(--font-color);
+  color: white;
+  font-family: var(--base-font);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-form-container button:hover {
+  background-color: #e03804;
+}
+
+.add-form-container .form-message {
+  text-align: center;
+  color: green;
+  font-weight: 600;
+  margin-top: 1rem;
+  font-family: var(--base-font);
+}

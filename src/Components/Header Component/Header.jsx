@@ -23,11 +23,6 @@ const Header = () => {
           <li>
             <NavLink to="/favorites">My Favourites</NavLink>
           </li>
-          <li>
-            <Link to="/signout" className="nav-link">
-              Sign Out
-            </Link>
-          </li>
         </ul>
       </nav>
     </header>

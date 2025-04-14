@@ -2,25 +2,23 @@ import React from "react";
 import { useFavourites } from "../FavouritesContext/FavouritesContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 
 const FavouriteItemComponent = ({ item }) => {
   const { removeFromFavourites } = useFavourites();
 
   return (
     <div className="productCartContainer">
-      <Link to={`/cocktail/${item.idDrink}`}>
-        <img
-          src={item.strDrinkThumb}
-          alt={item.strDrink}
-          style={{ width: "100%", height: "auto" }}
-        />
-      </Link>
+      <img
+        src={item.image}
+        alt={item.name}
+        style={{ width: "100%", height: "auto" }}
+      />
       <div className="iconContainer">
-        <h2>{item.strDrink}</h2>
+        <h2>{item.name}</h2>
         <button
           className="iconDiv"
-          onClick={() => removeFromFavourites(item.idDrink)}
+          onClick={() => removeFromFavourites(item._id)}
+          aria-label={`Remove ${item.name} from favorites`}
         >
           <FontAwesomeIcon
             icon={faHeartSolid}
@@ -30,7 +28,17 @@ const FavouriteItemComponent = ({ item }) => {
           />
         </button>
       </div>
-      <p>{item.strCategory}</p>
+      <p>{item.alcoholic ? "Alcoholic" : "Non-Alcoholic"}</p>
+
+      {item.instructions && <p>{item.instructions}</p>}
+
+      {item.ingredients && Array.isArray(item.ingredients) && (
+        <ul>
+          {item.ingredients.map((ing, idx) => (
+            <li key={idx}>{ing}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

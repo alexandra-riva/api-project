@@ -1,32 +1,29 @@
 import { useFavourites } from "../FavouritesContext/FavouritesContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
-import { Link } from "react-router-dom";
+import { faHeart as faHeartRegular, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import "../Cocktail-list-component-AR/Cocktail-list.css";
 
-const CocktailsList = ({ items = [] }) => {
+const CocktailsList = ({ items = [], onDelete }) => {
   const { favourites, addToFavourites, removeFromFavourites } = useFavourites();
+  const cocktailsArray = Array.isArray(items) ? items : [items];
 
   const toggleFavourite = (drink) => {
-    // refactor to use ternary operator for readability
-    favourites.some((fav) => fav.idDrink === drink.idDrink)
-      ? removeFromFavourites(drink.idDrink)
+    favourites.some((fav) => fav._id === drink._id)
+      ? removeFromFavourites(drink._id)
       : addToFavourites(drink);
   };
 
   return (
     <section>
       <div className="cocktail-grid">
-        {items.map((drink) => (
-          // Refactor to use a separate component for each cocktail card for readability and reusability
+        {cocktailsArray.map((drink) => (
           <CocktailCard
-            key={drink.idDrink}
+            key={drink._id}
             drink={drink}
-            isFavourite={favourites.some(
-              (fav) => fav.idDrink === drink.idDrink
-            )}
+            isFavourite={favourites.some((fav) => fav._id === drink._id)}
             toggleFavourite={toggleFavourite}
+            onDelete={onDelete}
           />
         ))}
       </div>
@@ -34,33 +31,64 @@ const CocktailsList = ({ items = [] }) => {
   );
 };
 
-// Extract the CocktailCard component to a separate component for reusability and readability
-const CocktailCard = ({ drink, isFavourite, toggleFavourite }) => (
-  <div className="productCartContainer">
-    <Link to={`/cocktail/${drink.idDrink}`}>
+const CocktailCard = ({ drink, isFavourite, toggleFavourite, onDelete }) => {
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete(drink._id);
+    }
+  };
+
+  return (
+    <div className="productCartContainer">
       <img
-        src={drink.strDrinkThumb}
-        alt={`A cocktail called ${drink.strDrink}`}
+        src={drink.image}
+        alt={`A cocktail called ${drink.name}`}
         style={{ width: "100%", height: "auto" }}
       />
-    </Link>
-    <div className="iconContainer">
-      <h2>{drink.strDrink}</h2>
-      <button
-        className="iconDiv"
-        onClick={() => toggleFavourite(drink)}
-        aria-label={`Toggle favourite for ${drink.strDrink}`}
-      >
-        <FontAwesomeIcon
-          icon={isFavourite ? faHeartSolid : faHeartRegular}
-          size="2x"
-          color="red"
-          className="heart"
-        />
-      </button>
+
+      <div className="iconContainer">
+        <h2>{drink.name}</h2>
+        <button
+          className="iconDiv"
+          onClick={() => toggleFavourite(drink)}
+          aria-label={`Toggle favourite for ${drink.name}`}
+        >
+          <FontAwesomeIcon
+            icon={isFavourite ? faHeartSolid : faHeartRegular}
+            size="2x"
+            color="red"
+            className="heart"
+          />
+        </button>
+      </div>
+
+      <p>{drink.alcoholic ? "Alcoholic" : "Non-Alcoholic"}</p>
+      {drink.instructions && <p>{drink.instructions}</p>}
+
+      {drink.ingredients && Array.isArray(drink.ingredients) && (
+        <ul>
+          {drink.ingredients.map((ing, i) => (
+            <li key={i}>{ing}</li>
+          ))}
+        </ul>
+      )}
+
+      {onDelete && (
+        <button
+          className="iconDiv delete-icon"
+          onClick={handleDelete}
+          aria-label={`Delete ${drink.name}`}
+        >
+          <FontAwesomeIcon
+            icon={faTrashAlt}
+            size="2x"
+            color="#FF3904"
+            className="trash"
+          />
+        </button>
+      )}
     </div>
-    <p>{drink.strCategory}</p>
-  </div>
-);
+  );
+};
 
 export default CocktailsList;

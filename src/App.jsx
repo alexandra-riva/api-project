@@ -12,8 +12,9 @@ import CocktailsList from "./Components/Cocktail-list-component-AR/Cocktail-list
 import Footer from "./Components/Footer Component/Footer.jsx";
 import { FavouritesProvider } from "./Components/FavouritesContext/FavouritesContext.jsx";
 import FavouritesList from "./Components/FavouritesListComponent/FavouritesListComponent.jsx";
-import { CocktailDetails } from "./Components/Recipes/Recipe.jsx";
 import { useFavourites } from "./Components/FavouritesContext/FavouritesContext.jsx";
+import AddCocktailForm from "./Components/AddCocktailForm/AddCocktailForm";
+import AgeGate from "./Components/AgeGateComponent/AgeGate";
 
 const SignOutHandler = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function App() {
     <FavouritesProvider>
       <Router>
         <div className="App">
-          {/* delete the <header> tag and move into the component */}
+          <AgeGate /> {}
           <Header />
           <main className="content">
             <Routes>
@@ -59,7 +60,7 @@ function App() {
                 }
               />
               <Route path="/signout" element={<SignOutHandler />} />
-              <Route path="/cocktail/:id" element={<CocktailDetails />} />
+              <Route path="/add" element={<AddCocktailForm />} />
             </Routes>
           </main>
           <Footer />

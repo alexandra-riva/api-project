@@ -8,37 +8,63 @@
   margin-bottom: 1rem;
   padding: 0 3rem;
   max-width: 100%;
-  h1 {
-    font-family: var(--decorative-font);
-    font-size: var(--big-text-size);
-    font-weight: 500;
-    margin-bottom: 2rem;
-  }
+}
+
+.search-header h1 {
+  font-family: var(--decorative-font);
+  font-size: var(--big-text-size);
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.navigation-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
 }
 
 .search-navigation ul {
   list-style-type: none;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
   padding: 0;
-  li {
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 0.2rem;
-    display: inline-block;
-    border-bottom: 1px solid var(--background-color);
-    transition: 0.4s;
-    cursor: pointer;
-  }
-  li:hover,
-  li.active {
-    border-bottom: 1px solid var(--font-color);
-  }
-  li.active {
-    font-weight: 600;
-  }
+}
+
+.search-navigation li {
+  font-family: var(--base-font);
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  display: inline-block;
+  border-bottom: 1px solid var(--background-color);
+  transition: 0.3s ease;
+  cursor: pointer;
+  color: var(--font-color);
+}
+
+.search-navigation li:hover,
+.search-navigation li.active {
+  border-bottom: 1px solid var(--font-color);
+}
+
+.search-navigation li.active {
+  font-weight: 600;
+}
+
+.search-navigation li a.plain-link {
+  all: unset; 
+  display: inline;
+  cursor: pointer;
+  color: var(--font-color);
+  font-family: var(--base-font);
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .search-bar {
@@ -46,6 +72,7 @@
   position: relative;
   width: 80%;
   max-width: 40rem;
+  margin-top: 2rem;
 }
 
 .search-input {
@@ -76,12 +103,23 @@
   .search-header {
     padding: 0 1rem;
   }
+
   .search-header h1 {
     font-size: 2.4rem;
     margin-bottom: 1.2rem;
-    text-align: center;
   }
+
+  .navigation-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   .search-navigation ul {
     flex-direction: column;
+    gap: 0.8rem;
   }
+
+.search-navigation li.active a.plain-link {
+  font-weight: 600;
+}
 }

@@ -7,13 +7,16 @@ const FavouritesList = () => {
   const { favourites } = useFavourites();
 
   return (
-    // fix to correct layout
-
-    // first div is not needed
     <div className="cocktail-grid">
-      {favourites.map((item) => (
-        <FavouriteItemComponent key={item.id} item={item} />
-      ))}
+      {favourites.length > 0 ? (
+        favourites.map((item) => (
+          <FavouriteItemComponent key={item._id} item={item} />
+        ))
+      ) : (
+        <p style={{ textAlign: "center", width: "100%", fontFamily: "var(--base-font)" }}>
+          No favorites yet.
+        </p>
+      )}
     </div>
   );
 };
