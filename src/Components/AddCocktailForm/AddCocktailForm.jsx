@@ -52,40 +52,49 @@ const AddCocktailForm = () => {
   return (
     <div className="add-form-container">
       <h2>Add New Cocktail</h2>
-      {message && <p className="form-message">{message}</p>}
+      {message && <p className="form-message" aria-live="polite">{message}</p>}
       <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Cocktail Name</label>
         <input
+          id="name"
           type="text"
           name="name"
-          placeholder="Cocktail Name"
           value={formData.name}
           onChange={handleChange}
           required
         />
+
+        <label htmlFor="ingredients">Ingredients (comma-separated)</label>
         <textarea
+          id="ingredients"
           name="ingredients"
-          placeholder="Ingredients (comma-separated)"
           value={formData.ingredients}
           onChange={handleChange}
           required
         />
+
+        <label htmlFor="instructions">Instructions</label>
         <textarea
+          id="instructions"
           name="instructions"
-          placeholder="Instructions"
           value={formData.instructions}
           onChange={handleChange}
           required
         />
+
+        <label htmlFor="image">Image URL</label>
         <input
+          id="image"
           type="text"
           name="image"
-          placeholder="Image URL"
           value={formData.image}
           onChange={handleChange}
           required
         />
-        <label>
+
+        <label htmlFor="alcoholic">
           <input
+            id="alcoholic"
             type="checkbox"
             name="alcoholic"
             checked={formData.alcoholic}
@@ -93,6 +102,7 @@ const AddCocktailForm = () => {
           />
           Alcoholic
         </label>
+
         <button type="submit">Add Cocktail</button>
       </form>
     </div>

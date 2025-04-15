@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Header from "./Components/Header Component/Header";
 import DynamicHeader from "./Components/SearchHeaderComponent/DynamicHeader";
-import CocktailsList from "./Components/Cocktail-list-component-AR/Cocktail-list.jsx";
+import CocktailsList from "./Components/CocktailListComponent/CocktailList.jsx";
 import Footer from "./Components/Footer Component/Footer.jsx";
 import { FavouritesProvider } from "./Components/FavouritesContext/FavouritesContext.jsx";
 import FavouritesList from "./Components/FavouritesListComponent/FavouritesListComponent.jsx";
@@ -37,9 +37,13 @@ function App() {
     <FavouritesProvider>
       <Router>
         <div className="App">
-          <AgeGate /> {}
-          <Header />
-          <main className="content">
+          <AgeGate />
+
+          <header>
+            <Header />
+          </header>
+
+          <main className="content" role="main">
             <Routes>
               <Route
                 path="/"
@@ -63,7 +67,10 @@ function App() {
               <Route path="/add" element={<AddCocktailForm />} />
             </Routes>
           </main>
-          <Footer />
+
+          <footer>
+            <Footer />
+          </footer>
         </div>
       </Router>
     </FavouritesProvider>

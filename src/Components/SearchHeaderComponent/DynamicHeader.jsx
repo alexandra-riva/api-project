@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import SearchBar from "./SearchBar";
 import SearchNavigation from "./SearchNavigation";
-import CocktailsList from "../Cocktail-list-component-AR/Cocktail-list";
+import CocktailsList from "../CocktailListComponent/CocktailList";
 import Loader from "../LoaderComponent/Loader";
 import "./DynamicHeader.css";
 import {
@@ -37,7 +37,7 @@ const DynamicHeader = ({ type }) => {
   const getAll = async () => {
     setLoading(true);
     try {
-      const [data] = await Promise.all([fetchAllCocktails(), delay(2000)]);
+      const [data] = await Promise.all([fetchAllCocktails(), delay(3000)]);
       setItems(data || []);
     } catch (error) {
       handleApiError(error, "Failed to fetch all cocktails");
@@ -49,7 +49,7 @@ const DynamicHeader = ({ type }) => {
   const handleSearchByName = async (name) => {
     setLoading(true);
     try {
-      const [data] = await Promise.all([fetchCocktailsByName(name), delay(2000)]);
+      const [data] = await Promise.all([fetchCocktailsByName(name), delay(3000)]);
       setItems(data || []);
     } catch (error) {
       handleApiError(error, "Search by name failed");
@@ -76,7 +76,7 @@ const DynamicHeader = ({ type }) => {
   const handleRandom = async () => {
     setLoading(true);
     try {
-      const [data] = await Promise.all([fetchRandomCocktail(), delay(2000)]);
+      const [data] = await Promise.all([fetchRandomCocktail(), delay(3000)]);
       setItems([data]);
     } catch (error) {
       handleApiError(error, "Fetching random cocktail failed");

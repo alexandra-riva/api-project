@@ -1,5 +1,5 @@
 import React from "react";
-import "../Cocktail-list-component-AR/Cocktail-list.css";
+import "../CocktailListComponent/CocktailList.css";
 import FavouriteItemComponent from "../FavouriteItemComponent/FavouriteItemComponent.jsx";
 import { useFavourites } from "../FavouritesContext/FavouritesContext";
 

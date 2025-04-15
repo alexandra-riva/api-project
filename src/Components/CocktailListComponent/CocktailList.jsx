@@ -5,8 +5,8 @@ import {
   faHeart as faHeartRegular,
   faTrashAlt,
 } from "@fortawesome/free-regular-svg-icons";
-import { deleteCocktail } from "../../api"; 
-import "../Cocktail-list-component-AR/Cocktail-list.css";
+import { deleteCocktail } from "../../api.js"; 
+import "../CocktailListComponent/CocktailList.css";
 
 const CocktailsList = ({ items = [], onDelete }) => {
   const { favourites, addToFavourites, removeFromFavourites } =
