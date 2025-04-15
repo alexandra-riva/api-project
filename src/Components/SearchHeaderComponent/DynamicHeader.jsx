@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import SearchBar from "./SearchBar";
 import SearchNavigation from "./SearchNavigation";
 import CocktailsList from "../CocktailListComponent/CocktailList";
@@ -28,7 +28,7 @@ const DynamicHeader = ({ type }) => {
     setItems([]);
   };
 
-  const getAll = async () => {
+  const getAll = useCallback(async () => {
     setLoading(true);
     try {
       const [data] = await Promise.all([fetchAllCocktails(), delay(3000)]);
@@ -38,13 +38,13 @@ const DynamicHeader = ({ type }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (!isFavorites) {
       getAll();
     }
-  }, [isFavorites]); // ✅ getAll is now defined above this useEffect
+  }, [isFavorites, getAll]);
 
   const handleSearchByName = async (name) => {
     setLoading(true);
