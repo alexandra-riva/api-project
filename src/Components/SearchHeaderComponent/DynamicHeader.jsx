@@ -23,12 +23,6 @@ const DynamicHeader = ({ type }) => {
 
   const isFavorites = type === "favorites";
 
-  useEffect(() => {
-    if (!isFavorites) {
-      getAll();
-    }
-  }, [isFavorites]);
-
   const handleApiError = (error, message) => {
     console.error(message, error);
     setItems([]);
@@ -45,6 +39,12 @@ const DynamicHeader = ({ type }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!isFavorites) {
+      getAll();
+    }
+  }, [isFavorites]); // ✅ getAll is now defined above this useEffect
 
   const handleSearchByName = async (name) => {
     setLoading(true);
