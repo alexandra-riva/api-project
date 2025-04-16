@@ -60,7 +60,7 @@ Local API will run at: `http://localhost:5050`
 
 ### Production - No setup needed
 
-To test the app: simply visit:
+To test the app live simply visit:
 
 - Frontend: https://cocktail-kungen-app.netlify.app
 - Backend API: https://cocktail-kungen-app.onrender.com/api/cocktails
