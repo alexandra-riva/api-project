@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5050/api/cocktails";
+const API_BASE_URL = "https://cocktail-kungen-app.onrender.com/api/cocktails";
 
 export const fetchAllCocktails = async () => {
   const response = await fetch(API_BASE_URL);
