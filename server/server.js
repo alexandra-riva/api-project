@@ -6,15 +6,15 @@ require('dotenv').config({ path: __dirname + '/.env' });
 console.log("MONGO_URI is:", process.env.MONGO_URI);
 
 const app = express();
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
 
-// Middleware
+// Allow Netlify + localhost in CORS
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'https://your-netlify-site.netlify.app'],
   methods: ['GET', 'POST', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true,
+  allowedHeaders: ['Content-Type']
 }));
+
 app.use(express.json());
 
 // MongoDB connection
@@ -33,7 +33,7 @@ app.get('/api/cocktails', async (req, res) => {
     let query = {};
 
     if (name) {
-      query.name = { $regex: new RegExp(name, "i") }; // case-insensitive name match
+      query.name = { $regex: new RegExp(name, "i") };
     }
 
     if (ingredient) {
