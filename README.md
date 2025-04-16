@@ -41,9 +41,7 @@ All data is stored in my own MongoDB Atlas database, so every drink added is sav
 1. Clone the repository:  
    `git clone https://github.com/alexandra-riva/api-project`
 
-2. In `/server`, create a `.env` file and paste this: 
-
-- MONGO_URI=mongodb+srv://alexandra_riva:FkwP89tTsBKNiuva@cluster0.nf37k.mongodb.net/cocktailsdb?retryWrites=true&w=majority PORT=5050 
+2. In `/server`, create a `.env` file and place the connection string provided in the submission form.
 
 3. In `/server`, run: 
 
