@@ -21,6 +21,18 @@ Instead of using a public API like in the earlier group version of this project,
 - `POST /api/cocktails` – add a new cocktail  
 - `DELETE /api/cocktails/:id` – delete a cocktail by ID
 
+The API returns standard HTTP response status codes to indicate the result of each request:
+
+- 200 OK – Successful GET or DELETE request
+
+- 201 Created – Cocktail added successfully via POST
+
+- 400 Bad Request – Missing or invalid data in the request
+
+- 404 Not Found – No matching cocktail found for the query
+
+- 500 Internal Server Error – Something went wrong on the server
+
 All data is stored in my own MongoDB Atlas database, so every drink added is saved permanently. The connection is handled via fetch calls in a separate `api.js` file to keep things clean and organized. The API is stateless and fully decoupled from the frontend.
 
 ---
