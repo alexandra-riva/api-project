@@ -57,7 +57,8 @@ All data is stored in my own MongoDB Atlas database, so every drink added is sav
 
 3. In `/server`, run: 
 
-- npm install 
+- cd server
+- npm install
 - node server.js
 
 4. In the project root, run:
@@ -124,7 +125,7 @@ To limit who can access the backend, I used CORS to only allow requests from: 'h
 
 This means only my frontend (on Netlify) and local development environment can talk to the API. If someone tries to call it from another site, the request will be blocked. This is a simple but effective way to protect the API from being misused by other people’s websites. It’s a simple way to prevent random websites from accessing the API. 
 
-There’s no login, user accounts, or any kind of verification. That means anyone who knows the API routes could technically add or delete drinks. This isn’t ideal, but for a personal learning project it’s okay. In a real-world app, I’d definitely add authentication, user roles, and stricter validation — but the goal here was to understand and implement the basics first.
+There’s no login, user accounts, or any kind of verification. That means anyone could technically add or delete drinks. This isn’t ideal, but for a personal learning project it’s okay. In a real-world app, I’d definitely add authentication, user roles, and stricter validation — but the goal here was to understand and implement the basics first.
 
 ---
 
