@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5050;
 
 // Allow Netlify + localhost in CORS
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-netlify-site.netlify.app'],
+  origin: ['http://localhost:3000', 'https://cocktail-kungen-app.netlify.app'],
   methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
