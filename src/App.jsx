@@ -14,7 +14,6 @@ import { FavouritesProvider } from "./Components/FavouritesContext/FavouritesCon
 import FavouritesList from "./Components/FavouritesListComponent/FavouritesListComponent.jsx";
 import { useFavourites } from "./Components/FavouritesContext/FavouritesContext.jsx";
 import AddCocktailForm from "./Components/AddCocktailForm/AddCocktailForm";
-import AgeGate from "./Components/AgeGateComponent/AgeGate";
 
 const SignOutHandler = () => {
   const navigate = useNavigate();
@@ -37,8 +36,6 @@ function App() {
     <FavouritesProvider>
       <Router>
         <div className="App">
-          <AgeGate />
-
           <header>
             <Header />
           </header>
